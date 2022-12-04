@@ -1,0 +1,65 @@
+import java.util.Random;
+import java.util.Scanner;
+  
+class Numbergame {
+    public static void main(String[] args)
+    {
+  
+       
+        int ans, guess,score=100,chance =1; // stores actual and guess number and score initially score is 100
+  
+
+        final int MAX = 100;                                  // maximum value is 100
+  
+        Scanner in = new Scanner(System.in);
+  
+                                                             // Random instance
+        Random rand = new Random();
+  
+        boolean correct = false;
+  
+                                                           // correct answer
+        ans = rand.nextInt(MAX) + 1;
+  
+                                                          // loop until the guess is correct or the number of chances exceeded 10
+        while (!correct || chance>10) {
+  
+            System.out.println(
+                "Guess a number between 1 and 100: ");
+  
+                                                         // guess value
+            guess = in.nextInt();
+  
+                                                        // if guess is greater than actual
+            if (guess > ans) {
+                System.out.println("Too high, try again"); 
+                score = score-(2*chance);
+
+            }
+  
+                                                        // if guess is less than actual
+            else if (guess < ans) {
+                System.out.println("Too low, try again");
+                score = score-(2*chance);                   // on every wrong guess the scored to reduced by 2 times of number of chances used
+            }
+  
+                                                           // guess is equal to actual value
+            else {
+                
+                System.out.println(
+                    "Yes, you guessed the number.");
+                System.out.println(
+                    "Your score is "+score);
+                
+  
+                correct = true;
+            }
+          chance = chance+1;
+          if(chance>10){
+             System.out.println("you lost the game");
+           }
+
+        }
+        System.exit(0);
+    }
+}
